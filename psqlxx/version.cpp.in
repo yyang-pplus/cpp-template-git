@@ -1,0 +1,14 @@
+#include <psqlxx/version.hpp>
+
+
+namespace psqlxx {
+
+std::string_view GetVersion() {
+    return "@psqlxx_VERSION@";
+}
+
+std::string_view GetGitDescribe() {
+    return "@GIT_COMMIT_DESCRIPTION@";
+}
+
+}//namespace psqlxx
