@@ -5,3 +5,5 @@
 #
 
 sudo apt update
+
+sudo apt --yes install shunit2
