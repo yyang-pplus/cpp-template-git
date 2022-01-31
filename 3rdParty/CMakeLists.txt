@@ -1,6 +1,6 @@
 set(CMAKE_POLICY_DEFAULT_CMP0069 NEW)
 
-if (psqlxx_WANT_TESTS)
+if (${PROJECT_NAME}_WANT_TESTS)
     add_subdirectory(googletest)
 endif ()
 

@@ -32,12 +32,13 @@ set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Debug Release RelWithDebInf
 
 # ######################################################################################
 # Project Options
-option(psqlxx_WARNINGS_AS_ERRORS "Treat all warnings as build errors." ON)
+option(${PROJECT_NAME}_WARNINGS_AS_ERRORS "Treat all warnings as build errors." ON)
 
-option(psqlxx_WANT_TESTS "Build all of the project's own tests." ON)
-option(psqlxx_WANT_AUTO_TESTS "Automatically run tests that have been changed." ON)
+option(${PROJECT_NAME}_WANT_TESTS "Build all of the project's own tests." ON)
+option(${PROJECT_NAME}_WANT_AUTO_TESTS
+       "Automatically run tests that have been changed." ON)
 
-if (psqlxx_WANT_TESTS)
+if (${PROJECT_NAME}_WANT_TESTS)
     enable_testing()
     include(CTest)
     mark_as_advanced(BUILD_TESTING)
@@ -55,9 +56,9 @@ if (psqlxx_WANT_TESTS)
     include(test_defines)
 endif ()
 
-option(psqlxx_WANT_INSTALLER "Build the project's own installer." OFF)
+option(${PROJECT_NAME}_WANT_INSTALLER "Build the project's own installer." OFF)
 
-if (psqlxx_WANT_INSTALLER)
+if (${PROJECT_NAME}_WANT_INSTALLER)
     include(GNUInstallDirs)
     set(CMAKE_INSTALL_DOCDIR ${CMAKE_INSTALL_DATAROOTDIR}/doc/${PROJECT_NAME})
 
@@ -65,7 +66,7 @@ if (psqlxx_WANT_INSTALLER)
          ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
     set(CMAKE_INSTALL_RPATH $ORIGIN $ORIGIN/${relative_dir})
 
-    set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT psqlxx_Runtime)
+    set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT ${PROJECT_NAME}_Runtime)
     include(InstallRequiredSystemLibraries)
 endif ()
 
@@ -75,16 +76,16 @@ add_subdirectory(3rdParty)
 
 # ######################################################################################
 # Main Targets
-add_subdirectory(psqlxx)
+add_subdirectory(${PROJECT_NAME})
 
-if (psqlxx_WANT_TESTS)
+if (${PROJECT_NAME}_WANT_TESTS)
     add_subdirectory(tests)
     add_subdirectory(scripts)
 endif ()
 
 # ######################################################################################
 # Packaging: Keep this block at the end
-if (psqlxx_WANT_INSTALLER)
+if (${PROJECT_NAME}_WANT_INSTALLER)
     if (CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
         add_subdirectory(packaging)
     endif ()
