@@ -1,6 +1,6 @@
 # enable_auto_test_command
 function (enable_auto_test_command target_name tests_regex)
-    if (psqlxx_WANT_AUTO_TESTS)
+    if (${PROJECT_NAME}_WANT_AUTO_TESTS)
         add_custom_command(
             TARGET ${target_name}
             POST_BUILD
@@ -13,9 +13,9 @@ endfunction ()
 
 # add_gtest_for
 function (add_gtest_for source_name)
-    if (psqlxx_WANT_TESTS)
+    if (${PROJECT_NAME}_WANT_TESTS)
         set(test_source_name "${source_name}.test")
-        set(target_name "psqlxx.${test_source_name}")
+        set(target_name "${PROJECT_NAME}.${test_source_name}")
         add_executable(${target_name} ${test_source_name}.cpp)
         target_link_libraries(${target_name} PRIVATE gtest_main ${ARGN})
         target_compile_options(${target_name} PRIVATE ${COMPILER_WARNING_OPTIONS})
@@ -28,9 +28,9 @@ endfunction ()
 
 # discover_gtest_for
 function (discover_gtest_for source_name)
-    if (psqlxx_WANT_TESTS)
+    if (${PROJECT_NAME}_WANT_TESTS)
         set(test_source_name "${source_name}.test")
-        set(target_prefix "psqlxx.${source_name}.")
+        set(target_prefix "${PROJECT_NAME}.${source_name}.")
         set(target_name "${target_prefix}test")
         add_executable(${target_name} ${test_source_name}.cpp)
         target_link_libraries(${target_name} PRIVATE gtest_main ${ARGN})
