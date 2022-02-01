@@ -16,7 +16,7 @@ cxxopts::Options CreateBaseOptions() {
 }
 
 std::optional<cxxopts::ParseResult>
-ParseOptions(cxxopts::Options &options, int argc, char **argv) noexcept {
+ParseOptions(cxxopts::Options &options, int argc, const char *argv[]) noexcept {
     try {
         return options.parse(argc, argv);
     } catch (const cxxopts::option_not_exists_exception &e) {

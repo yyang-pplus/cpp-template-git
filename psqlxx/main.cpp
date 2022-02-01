@@ -15,7 +15,7 @@ inline auto buildOptions() {
 
 [[nodiscard]]
 inline auto
-handleOptions(cxxopts::Options &options, const int argc, char **argv) {
+handleOptions(cxxopts::Options &options, const int argc, const char *argv[]) {
     const auto results = ParseOptions(options, argc, argv);
     if (not results) {
         exit(EXIT_FAILURE);
@@ -32,7 +32,7 @@ inline constexpr auto toExitCode(const bool success) {
 }
 
 
-int main(int argc, char **argv) {
+int main(int argc, const char *argv[]) {
     auto options = buildOptions();
 
     handleOptions(options, argc, argv);
