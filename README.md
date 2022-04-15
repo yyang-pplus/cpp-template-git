@@ -1,4 +1,4 @@
-![Build Status](https://github.com/github/docs/actions/workflows/cmake.yml/badge.svg)] [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Build Status](https://github.com/yyang-pplus/cpp-template-git/workflows/cpp-template-git-master/badge.svg)](https://github.com/yyang-pplus/cpp-template-git/actions) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 # cpp-template-git
 <Project Description Summary>
