@@ -29,8 +29,6 @@ add_test(NAME ${PROJECT_NAME}.main.can_display_version COMMAND ${PROJECT_NAME}_m
                                                                --version)
 enable_auto_test_command(${PROJECT_NAME}_main ^${PROJECT_NAME}.main)
 
-discover_gtest_for(args ${PROJECT_NAME}::${PROJECT_NAME})
-
 if (${PROJECT_NAME}_WANT_INSTALLER)
     install(
         TARGETS ${PROJECT_NAME}_main
