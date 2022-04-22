@@ -7,7 +7,7 @@ using namespace psqlxx;
 namespace {
 
 [[nodiscard]]
-inline auto buildOptions() {
+inline auto buildOptions() noexcept {
     auto options = CreateBaseOptions();
 
     return options;
@@ -15,17 +15,20 @@ inline auto buildOptions() {
 
 [[nodiscard]]
 inline auto
-handleOptions(cxxopts::Options &options, const int argc, const char *argv[]) {
-    const auto results = ParseOptions(options, argc, argv);
-    if (not results) {
-        exit(EXIT_FAILURE);
+handleOptions(cxxopts::Options &options, const int argc, const char *argv[]) noexcept {
+    try {
+        const auto results = options.parse(argc, argv);
+        HandleBaseOptions(options, results);
+    } catch (const cxxopts::option_not_exists_exception &e) {
+        std::cerr << e.what() << std::endl;
+    } catch (const cxxopts::OptionException &e) {
+        std::cerr << e.what() << std::endl;
     }
-
-    HandleBaseOptions(options, results.value());
+    exit(EXIT_FAILURE);
 }
 
 [[nodiscard]]
-inline constexpr auto toExitCode(const bool success) {
+inline constexpr auto toExitCode(const bool success) noexcept {
     return success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
