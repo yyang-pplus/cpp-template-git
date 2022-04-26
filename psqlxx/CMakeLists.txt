@@ -10,7 +10,7 @@ add_library(${PROJECT_NAME}::version ALIAS ${PROJECT_NAME}_version)
 set_target_properties(${PROJECT_NAME}_version PROPERTIES POSITION_INDEPENDENT_CODE ON)
 target_compile_options(${PROJECT_NAME}_version PRIVATE ${COMPILER_WARNING_OPTIONS})
 
-add_library(${PROJECT_NAME}_${PROJECT_NAME} args.cpp args.hpp)
+add_library(${PROJECT_NAME}_${PROJECT_NAME} args.cpp args.hpp exception.hpp)
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME}_${PROJECT_NAME})
 target_link_libraries(
     ${PROJECT_NAME}_${PROJECT_NAME}

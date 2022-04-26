@@ -16,15 +16,19 @@ inline auto buildOptions() noexcept {
 [[nodiscard]]
 inline auto
 handleOptions(cxxopts::Options &options, const int argc, const char *argv[]) noexcept {
-    try {
-        const auto results = options.parse(argc, argv);
-        HandleBaseOptions(options, results);
-    } catch (const cxxopts::option_not_exists_exception &e) {
-        std::cerr << e.what() << std::endl;
-    } catch (const cxxopts::OptionException &e) {
-        std::cerr << e.what() << std::endl;
+    const auto results = [&]() {
+        try {
+            return options.parse(argc, argv);
+        } catch (const cxxopts::option_not_exists_exception &e) {
+            std::cerr << e.what() << std::endl;
+        } catch (const cxxopts::OptionException &e) {
+            std::cerr << e.what() << std::endl;
+        }
+        exit(EXIT_FAILURE);
     }
-    exit(EXIT_FAILURE);
+    ();
+
+    HandleBaseOptions(options, results);
 }
 
 [[nodiscard]]
