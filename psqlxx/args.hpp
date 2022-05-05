@@ -5,10 +5,9 @@
 
 namespace psqlxx {
 
-[[nodiscard]]
-cxxopts::Options CreateBaseOptions() noexcept;
+[[nodiscard]] cxxopts::Options CreateBaseOptions() noexcept;
 
 void HandleBaseOptions(const cxxopts::Options &options,
                        const cxxopts::ParseResult &parsed_options) noexcept;
 
-}//namespace psqlxx
+} //namespace psqlxx

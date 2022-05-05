@@ -6,15 +6,13 @@ using namespace psqlxx;
 
 namespace {
 
-[[nodiscard]]
-inline auto buildOptions() noexcept {
+[[nodiscard]] inline auto buildOptions() noexcept {
     auto options = CreateBaseOptions();
 
     return options;
 }
 
-[[nodiscard]]
-inline auto
+[[nodiscard]] inline auto
 handleOptions(cxxopts::Options &options, const int argc, const char *argv[]) noexcept {
     const auto results = [&]() {
         try {
@@ -25,18 +23,16 @@ handleOptions(cxxopts::Options &options, const int argc, const char *argv[]) noe
             std::cerr << e.what() << std::endl;
         }
         exit(EXIT_FAILURE);
-    }
-    ();
+    }();
 
     HandleBaseOptions(options, results);
 }
 
-[[nodiscard]]
-inline constexpr auto toExitCode(const bool success) noexcept {
+[[nodiscard]] inline constexpr auto toExitCode(const bool success) noexcept {
     return success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
-}
+} // namespace
 
 
 int main(int argc, const char *argv[]) {
