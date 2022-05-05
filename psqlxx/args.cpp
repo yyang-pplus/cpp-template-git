@@ -7,10 +7,12 @@ namespace psqlxx {
 cxxopts::Options CreateBaseOptions() noexcept {
     cxxopts::Options options("psqlxx", "<Project Description Summary>");
 
+    // clang-format off
     options.add_options()
     ("h,help", "print usage")
     ("V,version", "print version")
     ;
+    // clang-format on
 
     return options;
 }
@@ -29,4 +31,4 @@ void HandleBaseOptions(const cxxopts::Options &options,
     }
 }
 
-}//namespace psqlxx
+} //namespace psqlxx
