@@ -42,3 +42,8 @@ repos:
     rev: v0.950
     hooks:
       - id: mypy
+
+  - repo: https://github.com/markdownlint/markdownlint.git
+    rev: v0.11.0
+    hooks:
+      - id: markdownlint
