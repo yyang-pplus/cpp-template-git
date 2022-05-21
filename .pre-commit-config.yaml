@@ -1,13 +1,13 @@
 default_stages: [commit]
 repos:
   - repo: https://github.com/yyang-pplus/config-sh.git
-    rev: 769a461fdeb7937620aed03a0286f86eea927485
+    rev: 8108fa536a1d8e7c2ecf203ec69e8c8ab946c6f9
     hooks:
       - id: astyle-c-in
       - id: shfmt
 
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v14.0.1
+    rev: v14.0.3
     hooks:
       - id: clang-format
 
@@ -24,8 +24,10 @@ repos:
         stages: [commit]
       - id: check-json
       - id: check-merge-conflict
+      - id: check-symlinks
       - id: check-xml
-      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
       - id: trailing-whitespace
         stages: [commit]
 
@@ -47,3 +49,8 @@ repos:
     rev: v0.11.0
     hooks:
       - id: markdownlint
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.26.3
+    hooks:
+      - id: yamllint
