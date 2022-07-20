@@ -24,10 +24,13 @@ add_executable(${PROJECT_NAME}::main ALIAS ${PROJECT_NAME}_main)
 target_link_libraries(${PROJECT_NAME}_main PRIVATE ${PROJECT_NAME}::${PROJECT_NAME})
 set_target_properties(${PROJECT_NAME}_main PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
-add_test(NAME ${PROJECT_NAME}.main.can_display_help COMMAND ${PROJECT_NAME}_main --help)
-add_test(NAME ${PROJECT_NAME}.main.can_display_version COMMAND ${PROJECT_NAME}_main
-                                                               --version)
-enable_auto_test_command(${PROJECT_NAME}_main ^${PROJECT_NAME}.main)
+if (${PROJECT_NAME}_WANT_TESTS)
+    add_test(NAME ${PROJECT_NAME}.main.can_display_help COMMAND ${PROJECT_NAME}_main
+                                                                --help)
+    add_test(NAME ${PROJECT_NAME}.main.can_display_version COMMAND ${PROJECT_NAME}_main
+                                                                   --version)
+    enable_auto_test_command(${PROJECT_NAME}_main ^${PROJECT_NAME}.main)
+endif ()
 
 if (${PROJECT_NAME}_WANT_INSTALLER)
     install(
