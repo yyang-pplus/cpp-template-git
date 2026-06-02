@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <psqlxx/args.hpp>
 #include <psqlxx/version.hpp>
 
